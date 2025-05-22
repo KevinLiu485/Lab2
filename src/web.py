@@ -1,5 +1,8 @@
 import gradio as gr
-from api.kimi import chat, messages
+# from api.kimi import chat, messages
+from api.kimi import Kimi
+
+Kimi = Kimi()
 
 # 清除对话历史
 def clear_history():
@@ -8,12 +11,13 @@ def clear_history():
     return ""
 
 # 与Kimi模型对话并保持聊天历史
-def chat_with_kimi(message, history):
+def chat_with_kimi(message: str, history):
     if not message:
         return "", history
     
     # 调用main.py中的chat函数
-    bot_response = chat(message)
+    # bot_response = chat(message)
+    bot_response = Kimi.multi_turn_chat(message)
     
     # 更新聊天历史
     history = history + [[message, bot_response]]
