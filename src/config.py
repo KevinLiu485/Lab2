@@ -26,26 +26,24 @@ def load_config(config_file="config.json"):
         print(f"错误: 配置文件 '{config_path}' 不是有效的JSON格式")
         return {}
 
-def get_api_key():
-    """获取API密钥"""
+def get_api_key(name):
+    """
+    获取API密钥
+    
+    Args: 
+        name: API名称，例如 'kimi' 或 'doubao'
+    Returns:
+        str: 对应API的密钥，如果未找到则返回空字符串
+    """
     config = load_config()
     if config:
-        print("配置加载成功:")
+        # print("配置加载成功:")
         for item in config:
-            # print(f"API Name: {item.get('name')}")
-            # print(f"API Key: {item.get('key')}")
-            return item.get('key', '')
-    # return config.get("api_key", "")
-
-# def get_base_url():
-#     """获取API基础URL"""
-#     config = load_config()
-#     return config.get("base_url", "https://api.moonshot.cn/v1")
-
-# def get_model():
-#     """获取使用的模型名称"""
-#     config = load_config()
-#     return config.get("model", "moonshot-v1-8k")
+            if name == item.get('name'):
+                # print(f"API Name: {item.get('name')}")
+                # print(f"API Key: {item.get('key')}")
+                return item.get('key', '')
+    return ''
 
 # 如果直接运行此文件，测试配置是否正确加载
 if __name__ == "__main__":
@@ -57,5 +55,7 @@ if __name__ == "__main__":
             print(f"API Key: {item.get('key')}")
             # if item.get('name') == 'kimi':
             #     return item.get('key', '')
+        print("Kimi Key:", get_api_key('kimi'))
+        print("Doubao Key:", get_api_key('doubao'))
     else:
         print("配置加载失败，请确保config.json文件存在且格式正确")
