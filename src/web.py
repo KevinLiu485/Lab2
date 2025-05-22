@@ -1,5 +1,5 @@
 import gradio as gr
-from kimi import chat, messages
+from api.kimi import chat, messages
 
 # 清除对话历史
 def clear_history():
