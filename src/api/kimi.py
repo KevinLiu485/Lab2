@@ -1,22 +1,24 @@
 from openai import OpenAI
-from config import get_api_key
+from config import config
 from api.gpt import GPT
+
+MODEL = 'kimi'
+SYSTEM_MESSAGE = [
+    {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
+]
+WINDOW_SIZE = 20
 
 class Kimi(GPT):
     def __init__(self):
-        # self.model_name = "kimi"
-        # self.api_key = get_api_key(self.model_name)
         self.messages = []
         self.client = OpenAI(
-            api_key = get_api_key('kimi'), # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
-            base_url = "https://api.moonshot.cn/v1",
+            api_key = config.get(MODEL, 'apikey'),
+            base_url = config.get(MODEL, 'baseurl'),
         )
-        self.system_messages = [
-            {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
-        ]
-        self.window_size = 20
+        self.system_messages = SYSTEM_MESSAGE
+        self.window_size = WINDOW_SIZE
 
-    def multi_turn_chat(self, input: str) -> str:
+    def chat(self, input: str) -> str:
         """
         与Kimi模型进行多轮对话
         :param message: 用户输入的消息
@@ -25,7 +27,7 @@ class Kimi(GPT):
         self._append_user_messages(input)
         # 携带 messages 与 Kimi 大模型对话
         completion = self.client.chat.completions.create(
-            model="moonshot-v1-8k",
+            model=config.get(MODEL, 'modelname'),
             messages=self.messages,
             temperature=0.3,
         )
@@ -34,10 +36,12 @@ class Kimi(GPT):
         assistant_message = completion.choices[0].message
     
         # 为了让 Kimi 大模型拥有完整的记忆，我们必须将 Kimi 大模型返回给我们的消息也添加到 messages 中
-        # self.messages.append(assistant_message)
         self._append_return_messages(assistant_message)
     
         return assistant_message.content
+    
+    def get_model_name(self) -> str:
+        return MODEL
 
     def _append_return_messages(self, input: str):
         self.messages.append(input)
@@ -48,7 +52,7 @@ class Kimi(GPT):
         """
         :param input: 用户输入的消息
         :return: 新的消息列表
-        """        
+        """
         self.messages.append({
             "role": "user",
             "content": input,	
@@ -73,94 +77,4 @@ class Kimi(GPT):
         new_messages.extend(self.messages)
         self.messages = new_messages
 
-
-# client = OpenAI(
-#     api_key = get_api_key('kimi'), # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
-#     base_url = "https://api.moonshot.cn/v1",
-# )
- 
-# 我们将 System Messages 单独放置在一个列表中，这是因为每次请求都应该携带 System Messages
-# system_messages = [
-# 	{"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
-# ]
- 
-# 我们定义一个全局变量 messages，用于记录我们和 Kimi 大模型产生的历史对话消息
-# 在 messages 中，既包含我们向 Kimi 大模型提出的问题（role=user），也包括 Kimi 大模型给我们的回复（role=assistant）
-# messages 中的消息按时间顺序从小到大排列
-# messages = []
- 
- 
-# def make_messages(input: str, n: int = 20) -> list[dict]:
-# 	"""
-# 	使用 make_messaegs 控制每次请求的消息数量，使其保持在一个合理的范围内，例如默认值是 20。在构建消息列表
-# 	的过程中，我们会先添加 System Prompt，这是因为无论如何对消息进行截断，System Prompt 都是必不可少
-# 	的内容，再获取 messages —— 即历史记录中，最新的 n 条消息作为请求使用的消息，在大部分场景中，这样
-# 	能保证请求的消息所占用的 Tokens 数量不超过模型上下文窗口。
-# 	"""
-# 	global messages  # Declare messages as a global variable
-	
-# 	# 首先，我们将用户最新的问题构造成一个 message（role=user），并添加到 messages 的尾部
-# 	messages.append({
-# 		"role": "user",
-# 		"content": input,	
-# 	})
- 
-# 	# new_messages 是我们下一次请求使用的消息列表，现在让我们来构建它
-# 	new_messages = []
- 
-# 	# 每次请求都需要携带 System Messages，因此我们需要先把 system_messages 添加到消息列表中；
-# 	# 注意，即使对消息进行截断，也应该注意保证 System Messages 仍然在 messages 列表中。
-# 	new_messages.extend(system_messages)
- 
-# 	# 在这里，当历史消息超过 n 条时，我们仅保留最新的 n 条消息
-# 	if len(messages) > n:
-# 		messages = messages[-n:]
- 
-# 	new_messages.extend(messages)
-# 	return new_messages
- 
- 
-# def chat(input: str) -> str:
-#     """
-# 	chat 函数支持多轮对话，每次调用 chat 函数与 Kimi 大模型对话时，Kimi 大模型都会”看到“此前已经
-# 	产生的历史对话消息，换句话说，Kimi 大模型拥有了记忆。
-# 	"""
- 
-# 	# 携带 messages 与 Kimi 大模型对话
-#     completion = client.chat.completions.create(
-#         model="moonshot-v1-8k",
-#         messages=make_messages(input),
-#         temperature=0.3,
-#     )
- 
-# 	# 通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
-#     assistant_message = completion.choices[0].message
- 
-#     # 为了让 Kimi 大模型拥有完整的记忆，我们必须将 Kimi 大模型返回给我们的消息也添加到 messages 中
-#     messages.append(assistant_message)
- 
-#     return assistant_message.content
- 
-# def interactive_chat():
-#     """
-#     交互式聊天函数，让用户可以持续与Kimi大模型进行对话
-#     """
-#     print("欢迎使用Kimi聊天机器人！输入'quit'或'exit'结束对话。")
-    
-#     while True:
-#         try:
-#             user_input = input("\n>> ")
-#             if user_input.lower() in ['exit', 'quit']:
-#                 print("谢谢使用，再见！")
-#                 break
-                
-#             response = chat(user_input)
-#             print(f"\nKimi: {response}")
-#         except EOFError:
-#             # 处理Control+D (EOF)信号
-#             print("\n检测到Control+D，退出程序。")
-#             break
-#         except KeyboardInterrupt:
-#             # 处理Control+C信号
-#             print("\n检测到Control+C，退出程序。")
-#             break
+kimi = Kimi()
