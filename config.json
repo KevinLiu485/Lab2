@@ -8,5 +8,10 @@
         "baseurl": "https://ark.cn-beijing.volces.com/api/v3",
         "modelname": "doubao-1.5-vision-lite-250315",
         "apikey": "b8bfb41c-5852-452c-91e1-0fddafcde9fd"
+    },
+    "deepseek": {
+        "baseurl": "https://api.deepseek.com",
+        "modelname": "deepseek-chat",
+        "apikey": "sk-f1ec35b8f9834ccf9490afb5ecc9a327"
     }
 }

@@ -1,0 +1,494 @@
+{
+    "kimi": [
+        {
+            "role": "system",
+            "content": "**Below is chat starts at 2025-05-23 12:51:27**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！有什么可以帮助你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "1+1="
+        },
+        {
+            "role": "assistant",
+            "content": "1+1等于2。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-23 12:57:53**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "嗨，我是Kimi，一个由Moonshot AI提供的人工智能助手。我在这里帮助你解答问题、提供信息，并且进行有趣的对话。有什么可以帮你的吗？"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 08:06:06**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！我是 Kimi，一个由 Moonshot AI 提供的人工智能助手。我擅长中英文对话，可以帮助你解答问题、提供信息和进行有趣的交流。有什么可以帮你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！很高兴和你交流。有什么我可以帮你的吗？"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 08:41:45**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！我是Kimi，一个由Moonshot AI提供的人工智能助手。我擅长中文和英文对话，可以帮你解答问题、提供信息和进行有趣的交流。有什么可以帮到你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！有什么可以帮助你的吗？ 😊"
+        },
+        {
+            "role": "user",
+            "content": "こんにちわ"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "こんにちは！どのようにお手伝いしましょうか？何か質問があれば、お気軽にどうぞ。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 09:39:36**"
+        },
+        {
+            "role": "user",
+            "content": "图像里是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这是一只坐着的小狗，看起来非常可爱。小狗的毛色是浅黄色，耳朵下垂，眼睛大而明亮，显得非常温顺和友好。"
+        },
+        {
+            "role": "user",
+            "content": "我是Kira"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好，Kira！很高兴认识你。这只小狗看起来很可爱！如果你有任何问题或需要帮助，随时告诉我哦！"
+        },
+        {
+            "role": "user",
+            "content": "我是谁？"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这是一只可爱的小狗。你想知道关于它的什么信息呢？"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！有什么我可以帮你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "图片中是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这是一只小狗，看起来像是一只幼犬。它的毛色是浅黄色，耳朵下垂，眼神显得非常可爱和温顺。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 09:50:37**"
+        },
+        {
+            "role": "user",
+            "content": "图像中是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这是一只小狗，看起来非常可爱。它有着柔软的毛发和大大的眼睛，显得非常温顺和友好。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 10:06:57**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！很高兴为你提供帮助。有什么问题我可以帮你解答吗？"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！很高兴为你提供帮助。有什么问题我可以帮你解答吗？😄"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 11:20:14**"
+        },
+        {
+            "role": "user",
+            "content": "你好，我是Kira"
+        },
+        {
+            "role": "assistant",
+            "content": "你好，Kira！很高兴认识你。有什么我可以帮助你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "我叫什么"
+        },
+        {
+            "role": "assistant",
+            "content": "你叫Kira，很高兴认识你！如果你有其他问题或需要帮助，随时告诉我。"
+        },
+        {
+            "role": "user",
+            "content": "描述图片内容"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这是一张可爱的小狗照片。小狗看起来是一只幼犬，毛色是浅黄色，耳朵下垂，眼睛大而圆，显得非常天真无邪。它正坐着，背景是纯白色的，使得小狗的形象更加突出。小狗的毛发看起来柔软而蓬松，整体给人一种温暖和友好的感觉。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 13:45:12**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好！很高兴见到你。有什么可以帮你的吗？"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "你好，我是Kimi，一个由Moonshot AI开发的人工智能助手。我在这里帮助你解答问题、提供信息，以及进行有趣的对话。无论你需要学习资料、生活建议还是简单的陪伴，我都在这里为你服务。有什么可以帮你的吗？"
+        }
+    ],
+    "doubao": [
+        {
+            "role": "system",
+            "content": "**Below is chat starts at 2025-05-23 12:51:27**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的都可以说哦，比如分享生活趣事、探讨问题、提问题等。"
+        },
+        {
+            "role": "user",
+            "content": "1+1="
+        },
+        {
+            "role": "assistant",
+            "content": "在常规的数学十进制运算中，1+1=2。\n\n但在不同的情境下，答案可能不同：\n- 在二进制计算中，1+1=10。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-23 12:57:53**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "我是豆包呀，是由字节跳动公司开发训练的人工智能，能陪你聊天、解答问题、交流各种想法呢。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 08:06:06**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "我是豆包呀，是由字节跳动公司研发训练的人工智能，能陪你聊天、解答问题、一起交流各种想法呢。"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的吗？可以说说你感兴趣的话题或者遇到的事情哦。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 08:41:45**"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "我是豆包呀，是由字节跳动公司开发训练的人工智能，能陪你聊天、解答问题、交流各种想法呢。"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的吗？可以说说你最近的生活、遇到的事情或者任何感兴趣的话题呢。"
+        },
+        {
+            "role": "user",
+            "content": "こんにちわ"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "こんにちは！何かお手伝いできることはありますか？何か話したいことがあればお気軽にお話しください。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 09:39:36**"
+        },
+        {
+            "role": "user",
+            "content": "图像里是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "仅从你目前描述“图像里是什么”，无法确切知晓具体所指图像内容呢。请详细描述图像呈现的主体、场景、人物、物体、色彩、风格等相关信息，这样我才能准确告诉你图像里究竟是什么样子的。"
+        },
+        {
+            "role": "user",
+            "content": "我是Kira"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀，Kira。有什么想和我聊的都可以说一说呢，比如分享一下你的日常、兴趣爱好或者最近发生的有趣事情~"
+        },
+        {
+            "role": "user",
+            "content": "我是谁？"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "仅从你给出的这简短一句话“我是谁？”，我没办法确切知道你是谁呀，你可以自己介绍一下自己呢。"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的都可以说呢，无论是分享生活、讨论问题还是寻求帮助都可以哦。"
+        },
+        {
+            "role": "user",
+            "content": "图片中是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "仅根据你提供的文字“图片中是什么”，无法得知具体所指的图片内容呢。请你能描述一下该图片大概呈现的主体、场景、颜色、人物、物体等相关特征，以便我能准确回答图片中究竟是什么。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 09:50:37**"
+        },
+        {
+            "role": "user",
+            "content": "图像中是什么"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "仅根据你目前提供的信息“图像中是什么”，不太明确具体所指的是哪幅图像呀。请详细描述一下该图像的相关特征，比如图像内容是人物、风景、物品、抽象图案等方面的信息，或者提供该图像本身让我能确切知晓其样子，这样我才能准确回答图像中具体是什么内容。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 10:06:57**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的吗？可以说说你的各种想法、经历、问题等哦。"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的吗？可以说说你的事情、想法、疑问等等。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 11:20:14**"
+        },
+        {
+            "role": "user",
+            "content": "你好，我是Kira"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀，Kira，有什么想和我聊的吗？"
+        },
+        {
+            "role": "user",
+            "content": "我叫什么"
+        },
+        {
+            "role": "assistant",
+            "content": "你没有在描述中提到你叫什么呀，所以我没办法直接知道你具体的名字呢。"
+        },
+        {
+            "role": "user",
+            "content": "描述图片内容"
+        },
+        {
+            "role": "user",
+            "content": "[Image uploaded: OIP._D8ErTH-UyiJG9G4F9-fhAHaJQ.jpeg]"
+        },
+        {
+            "role": "assistant",
+            "content": "这张图片展示了一个聊天界面，画面主要聚焦于一段文字信息。\n\n在图片的左侧，可以看到一个圆形的头像，头像内是一位浅色头发的人物形象，显示出一种柔和的色调。头像右侧紧接着是一条消息内容，消息内容以黑色字体呈现，内容是“@所有人 明天早上9点在会议室开会”。在这段消息的右侧，有一个小图标，这个图标是一个由三个点组成的省略号形状，通常表示更多选项或操作。整个界面简洁明了，主要突出这条会议通知的消息。"
+        },
+        {
+            "role": "system",
+            "content": "**Chat history loaded. Below is chat starts at 2025-05-24 13:45:12**"
+        },
+        {
+            "role": "user",
+            "content": "你好"
+        },
+        {
+            "role": "assistant",
+            "content": "你好呀~有什么想和我聊的吗？可以说说你的想法、经历或者有什么问题都可以哦。"
+        },
+        {
+            "role": "user",
+            "content": "你是谁"
+        },
+        {
+            "role": "assistant",
+            "content": "我是豆包呀，是由字节跳动公司研发训练的人工智能，能陪你聊天、解答疑问、交流各种话题呢。"
+        }
+    ]
+}

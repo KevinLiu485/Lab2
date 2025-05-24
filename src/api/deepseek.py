@@ -3,13 +3,13 @@ from config import config
 from api.gpt import GPT
 import base64
 
-MODEL = 'kimi'
+MODEL = 'deepseek'
 SYSTEM_MESSAGE = [
-    {"role": "system", "content": "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"},
+    {"role": "system", "content": ""},
 ]
 WINDOW_SIZE = 20
 
-class Kimi(GPT):
+class Deepseek(GPT):
     def __init__(self):
         self.messages = []
         self.client = OpenAI(
@@ -21,24 +21,22 @@ class Kimi(GPT):
 
     def chat(self, input: str, file_content=None) -> str:
         """
-        与Kimi模型进行多轮对话
+        与模型进行多轮对话，deepseek api 本身并不支持多模态
         :param message: 用户输入的消息
-        :return: Kimi模型的回复
+        :return: 模型的回复
         """    
-        # if file_content:
-        #     print(f"[Kimi::chat()] file size: {len(file_content)}")
-        self._append_user_messages(input, file_content)
-        # 携带 messages 与 Kimi 大模型对话
+        self._append_user_messages(input, file_content=None)
+        # 携带 messages 与大模型对话
         completion = self.client.chat.completions.create(
             model=config.get(MODEL, 'modelname'),
             messages=self.messages,
             temperature=0.3,
         )
     
-        # 通过 API 我们获得了 Kimi 大模型给予我们的回复消息（role=assistant）
+        # 通过 API 我们获得了大模型给予我们的回复消息（role=assistant）
         assistant_message = completion.choices[0].message
     
-        # 为了让 Kimi 大模型拥有完整的记忆，我们必须将 Kimi 大模型返回给我们的消息也添加到 messages 中
+        # 为了让大模型拥有完整的记忆，我们必须将大模型返回给我们的消息也添加到 messages 中
         self._append_return_messages(assistant_message)
     
         return assistant_message.content
@@ -51,7 +49,7 @@ class Kimi(GPT):
         获取模型的显示名称
         :return: 模型的显示名称
         """
-        return "Kimi"
+        return "Deepseek"
 
     def _append_return_messages(self, input: str):
         self.messages.append(input)

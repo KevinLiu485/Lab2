@@ -34,5 +34,3 @@ class Doubao(GPT):
         :return: 模型的显示名称
         """
         return "豆包"
-    
-doubao = Doubao()

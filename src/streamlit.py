@@ -75,9 +75,9 @@ def render_sidebar():
     """
     for model in state.model_list:
 
-        st.sidebar.markdown(f"## **{model.get_display_name()}**")
+        # st.sidebar.markdown(f"## **{model.get_display_name()}**")
         # 为每个模型创建一个按钮
-        if st.sidebar.button(f"{state.summaries[model]}", key=model.get_model_name()):
+        if st.sidebar.button(f"## **{model.get_display_name()}** \n{state.summaries[model]}", key=model.get_model_name()):
             record_preferences()
             # 如果按钮被点击，更新当前显示的模型
             state.front_model = model
@@ -191,12 +191,12 @@ st.title(state.front_model.get_display_name())
 
 # 侧栏标题
 st.sidebar.title("SUMMARIES")
-st.sidebar.markdown("***")
+st.sidebar.divider()
 
 render_chat_history()
 
-render_chat_input()
-
 render_file_uploader()
+
+render_chat_input()
 
 render_sidebar()

@@ -1,5 +1,6 @@
 from .kimi import Kimi
 from .doubao import Doubao
+from .deepseek import Deepseek
 from .gpt import GPT
 from typing import List
 
@@ -9,4 +10,4 @@ from typing import List
 # doubao = Doubao()
 
 # 提供统一的接口
-GPT_MODELS: List[GPT] = [Kimi(), Doubao()]
+GPT_MODELS: List[GPT] = [Kimi(), Doubao(), Deepseek()]
