@@ -3,6 +3,7 @@ import os
 import json
 from datetime import datetime
 from api import GPT_MODELS
+import concurrent.futures
 
 HISTORY_FILE = "profile/chat_history.json"  # 聊天历史文件名
 PREFERENCES_FILE = "profile/preferences.json"  # 偏好设置文件名
@@ -139,7 +140,6 @@ def render_chat_input():
     """
     prompt = st.chat_input(f"Ask {state.front_model.get_display_name()} anything...")
 
-    # 如果用户输入了文本或上传了图片
     if prompt:
         record_preferences()  # 记录用户的偏好设置
 
@@ -153,27 +153,38 @@ def render_chat_input():
             with st.chat_message("user"):
                 st.image(uploaded_file, caption="Uploaded Image")
 
-        # 遍历所有模型，获取响应
-        for model in state.model_list:
-            model_name = model.get_model_name()
+        # 定义一个函数来调用模型的 `chat` 方法
+        def call_model_chat(model, prompt, uploaded_file):
+            # print(f"{model.get_model_name()} called")
+            return model, model.chat(prompt, file_content=uploaded_file.getvalue() if uploaded_file else None)
 
-            # 调用模型的 chat 方法，传递文本和图片
-            response = model.chat(prompt, file_content=uploaded_file.getvalue() if uploaded_file else None)
+        # 使用多线程调用所有模型的 `chat` 方法
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            # 提交任务
+            future_to_model = {
+                executor.submit(call_model_chat, model, prompt, uploaded_file): model
+                for model in state.model_list
+            }
 
-            if model_name == state.front_model.get_model_name():
-                with st.chat_message("assistant"):
-                    st.markdown(response)
+            # 收集结果
+            for future in concurrent.futures.as_completed(future_to_model):
+                model, response = future.result()
 
-            # 更新该模型的对话历史
-            state.history_lists[model_name].append({"role": "user", "content": prompt})
+                model_name = model.get_model_name()
+                # print(f"{model_name} responsed")
 
-            if uploaded_file:
-                state.history_lists[model_name].append({"role": "user", "content": f"[Image] {uploaded_file.name}"})
+                # 显示模型的响应
+                if model_name == state.front_model.get_model_name():
+                    with st.chat_message("assistant"):
+                        st.markdown(response)
 
-            state.history_lists[model_name].append({"role": "assistant", "content": response})
+                # 更新该模型的对话历史
+                state.history_lists[model_name].append({"role": "user", "content": prompt})
+                if uploaded_file:
+                    state.history_lists[model_name].append({"role": "user", "content": f"[Image] {uploaded_file.name}"})
+                state.history_lists[model_name].append({"role": "assistant", "content": response})
 
-            # 保存摘要
-            state.summaries[model] = make_summary(response)
+                state.summaries[model] = make_summary(response)
 
         save_history()
         save_preferences()
