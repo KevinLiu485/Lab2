@@ -2,7 +2,7 @@ class GPT:
     def __init__(self):
         pass
 
-    def chat(self, message: str) -> str:
+    def chat(self, message: str, file_content=None) -> str:
         """
         与模型进行多轮或单轮对话
         :param message: 用户输入的消息

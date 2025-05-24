@@ -1,6 +1,7 @@
 from openai import OpenAI
 from config import config
 from api.gpt import GPT
+import base64
 
 MODEL = 'kimi'
 SYSTEM_MESSAGE = [
@@ -18,13 +19,15 @@ class Kimi(GPT):
         self.system_messages = SYSTEM_MESSAGE
         self.window_size = WINDOW_SIZE
 
-    def chat(self, input: str) -> str:
+    def chat(self, input: str, file_content=None) -> str:
         """
         与Kimi模型进行多轮对话
         :param message: 用户输入的消息
         :return: Kimi模型的回复
         """    
-        self._append_user_messages(input)
+        # if file_content:
+        #     print(f"[Kimi::chat()] file size: {len(file_content)}")
+        self._append_user_messages(input, file_content)
         # 携带 messages 与 Kimi 大模型对话
         completion = self.client.chat.completions.create(
             model=config.get(MODEL, 'modelname'),
@@ -48,15 +51,35 @@ class Kimi(GPT):
         self._maintain_messages_window()
 
 
-    def _append_user_messages(self, input: str):
+    def _append_user_messages(self, input: str, file_content=None):
         """
         :param input: 用户输入的消息
         :return: 新的消息列表
         """
-        self.messages.append({
-            "role": "user",
-            "content": input,	
-        })
+        if file_content:
+            image_url = "data:image/.jpeg;base64," + base64.b64encode(file_content).decode("utf-8")
+            self.messages.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image_url", 
+                            "image_url": {
+                                "url": image_url,
+                            },
+                        },
+                        {
+                            "type": "text",
+                            "text": input, 
+                        },
+                    ],
+                }
+            )
+        else:
+            self.messages.append({
+                "role": "user",
+                "content": input,	
+            })
         self._maintain_messages_window()
     
     def _maintain_messages_window(self):

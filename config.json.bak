@@ -1,7 +1,7 @@
 {
     "kimi": {
         "baseurl": "https://api.moonshot.cn/v1",
-        "modelname": "moonshot-v1-8k-vision-preview",
+        "modelname": "moonshot-v1-8k",
         "apikey": "sk-ymP64ClSNmnEXbVHuUJGW2vy2BEUEjPArwa5T4QenoIVhJYF"
     },
     "doubao": {
