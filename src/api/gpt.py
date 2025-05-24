@@ -9,14 +9,14 @@ class GPT:
         :return: 模型的回复
         """
 
-    def get_history(self) -> list:
-        """
-        获取聊天历史
-        :return: 聊天历史列表
-        """
-
     def get_model_name(self) -> str:
         """
         获取模型名称
         :return: 模型名称
+        """
+
+    def get_display_name(self) -> str:
+        """
+        获取模型的显示名称
+        :return: 模型的显示名称
         """

@@ -45,6 +45,13 @@ class Kimi(GPT):
     
     def get_model_name(self) -> str:
         return MODEL
+    
+    def get_display_name(self) -> str:
+        """
+        获取模型的显示名称
+        :return: 模型的显示名称
+        """
+        return "Kimi"
 
     def _append_return_messages(self, input: str):
         self.messages.append(input)

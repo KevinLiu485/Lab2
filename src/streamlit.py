@@ -5,6 +5,7 @@ from datetime import datetime
 from api import GPT_MODELS
 
 HISTORY_FILE = "chat_history.json"  # 聊天历史文件名
+PREFERENCES_FILE = "preferences.json"  # 偏好设置文件名
 
 state = st.session_state
 
@@ -24,28 +25,53 @@ def init_history_lists():
             try:
                 state.history_lists = json.load(f)
                 # 为每个模型添加一个时间戳
-                for model in GPT_MODELS:
+                for model in state.model_list:
                     state.history_lists[model.get_model_name()].append({"role": "system", "content": f"**Chat history loaded. Below is chat starts at {get_string_timestamp()}**"})
             except json.JSONDecodeError:
                 print("Error decoding JSON. Initializing empty history.")
     if "history_lists" not in state:
-        state.history_lists = {gpt.get_model_name(): [{"role": "system", "content": f"**Below is chat starts at {get_string_timestamp()}**"}] for gpt in GPT_MODELS}
+        state.history_lists = {gpt.get_model_name(): [{"role": "system", "content": f"**Below is chat starts at {get_string_timestamp()}**"}] for gpt in state.model_list}
 
+def init_model_list():
+    """
+    根据 PREFERENCES_FILE 初始化侧栏列表顺序
+    """
+    if os.path.exists(PREFERENCES_FILE):
+        with open(PREFERENCES_FILE, "r") as f:
+            try:
+                preferences = json.load(f)
+                print(f"init_model_list() read preferences: {preferences}")
+                # 根据偏好设置的值对模型进行排序
+                state.model_list = sorted(GPT_MODELS, key=lambda x: preferences[x.get_model_name()], reverse=True)
+            except json.JSONDecodeError:
+                print("Error decoding JSON. Initializing empty preferences.")
+    if "model_list" not in state:
+        # 如果没有偏好设置文件，则使用默认顺序
+        state.model_list = GPT_MODELS
+    print(f"init_model_list(): {state.model_list}")
 
 # 初始化会话状态
 if "initialized" not in state:
     state.initialized = True
 
+    # 从 PREFERENCES_FILE 初始化侧栏列表顺序
+    init_model_list()
+
     # 从HISTORY_FILE初始化聊天历史
     init_history_lists()
 
-    state.front_model_name = GPT_MODELS[0].get_model_name()  # 默认模型
-    # state.summaries = []  # 用于存储摘要
+    state.front_model_name = state.model_list[0].get_model_name()  # 默认模型
     state.summaries = [
-        {"model": gpt.get_model_name(), "summary": "Click to view history"} for gpt in GPT_MODELS
+        {"model": gpt.get_model_name(), "summary": "Click to view history"} for gpt in state.model_list
     ]  # 用于存储摘要
 
     state.uploaded_file = None  # 用于存储上传的文件
+
+    state.preferences = { gpt.get_model_name(): 0 for gpt in state.model_list } 
+
+    print(f"init(): {state.preferences}")
+    # 用于存储用户偏好
+
 
 # 页面标题
 st.title(state.front_model_name)
@@ -66,6 +92,7 @@ def render_sidebar():
         st.sidebar.markdown(f"## **{model_name}**")
         # 为每个模型创建一个按钮
         if st.sidebar.button(f"{summary_text}", key=model_name):
+            record_preferences()
             # 如果按钮被点击，更新当前显示的模型
             state.front_model_name = model_name
 
@@ -99,6 +126,21 @@ def make_summary(model_name: str, response: str):
     # summary = summary.ljust(20)  # 填充空格到至少 20 个字符
     return {"model": model_name, "summary": summary}
 
+def record_preferences():
+    """
+    读取 state.front_model_name 以记录用户的偏好
+    """
+    # 记录用户的偏好设置
+    state.preferences[state.front_model_name] += 1
+    print(f"record_preferences() {state.preferences}")
+
+def save_preferences():
+    """
+    保存用户的偏好设置到json文件
+    """
+    with open(PREFERENCES_FILE, "w") as f:
+        json.dump(state.preferences, f, ensure_ascii=False, indent=4)
+
 def save_history():
     """
     保存聊天历史到json文件
@@ -114,10 +156,11 @@ def render_chat_input():
 
     # 如果用户输入了文本或上传了图片
     if prompt:
-        # 显示用户的输入
-        if prompt:
-            with st.chat_message("user"):
-                st.markdown(prompt)
+        record_preferences()  # 记录用户的偏好设置
+        #     # 显示用户的输入
+        #     if prompt:
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
         uploaded_file = state.uploaded_file
         # 如果上传了图片，显示图片
@@ -127,7 +170,7 @@ def render_chat_input():
 
         # 遍历所有模型，获取响应
         summaries = []
-        for model in GPT_MODELS:
+        for model in state.model_list:
             model_name = model.get_model_name()
 
             # 调用模型的 chat 方法，传递文本和图片
@@ -150,6 +193,7 @@ def render_chat_input():
         state.summaries = summaries
         # 保存聊天历史到文件
         save_history()
+        save_preferences()
 
 def render_file_uploader():
     state.uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])

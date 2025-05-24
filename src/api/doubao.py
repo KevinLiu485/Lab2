@@ -28,4 +28,11 @@ class Doubao(GPT):
     def get_model_name(self) -> str:
         return MODEL
     
+    def get_display_name(self) -> str:
+        """
+        获取模型的显示名称
+        :return: 模型的显示名称
+        """
+        return "豆包"
+    
 doubao = Doubao()
