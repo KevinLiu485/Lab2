@@ -68,21 +68,11 @@ if "initialized" not in state:
 
     state.preferences = { gpt.get_model_name(): 0 for gpt in state.model_list }     # 用于存储用户偏好
 
-# 页面标题
-st.title(state.front_model.get_display_name())
-
-# 侧栏标题
-st.sidebar.title("SUMMARIES")
-st.sidebar.markdown("***")
-
 def render_sidebar():
     """
     渲染侧栏中的摘要按钮
     :return: None
     """
-    # for summary in state.summaries:
-    #     model_name = summary["model"]
-    #     summary_text = summary["summary"]
     for model in state.model_list:
 
         st.sidebar.markdown(f"## **{model.get_display_name()}**")
@@ -91,6 +81,7 @@ def render_sidebar():
             record_preferences()
             # 如果按钮被点击，更新当前显示的模型
             state.front_model = model
+            st.rerun()
 
 def render_chat_history():   
     """
@@ -163,7 +154,6 @@ def render_chat_input():
                 st.image(uploaded_file, caption="Uploaded Image")
 
         # 遍历所有模型，获取响应
-        # summaries = []
         for model in state.model_list:
             model_name = model.get_model_name()
 
@@ -176,8 +166,10 @@ def render_chat_input():
 
             # 更新该模型的对话历史
             state.history_lists[model_name].append({"role": "user", "content": prompt})
+
             if uploaded_file:
-                state.history_lists[model_name].append({"role": "user", "content": f"[Image uploaded: {uploaded_file.name}]"})
+                state.history_lists[model_name].append({"role": "user", "content": f"[Image] {uploaded_file.name}"})
+
             state.history_lists[model_name].append({"role": "assistant", "content": response})
 
             # 保存摘要
@@ -186,11 +178,21 @@ def render_chat_input():
         save_history()
         save_preferences()
 
+        st.rerun()
+
 def render_file_uploader():
     state.uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
 
 # 渲染流程
+
+# 页面标题
+st.title(state.front_model.get_display_name())
+
+# 侧栏标题
+st.sidebar.title("SUMMARIES")
+st.sidebar.markdown("***")
+
 render_chat_history()
 
 render_chat_input()
