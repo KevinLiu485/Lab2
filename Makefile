@@ -1,10 +1,10 @@
 PIP ?= pip
 PYTHON ?= python
-ENTRY ?= src/web.py
+ENTRY ?= src/streamlit.py
 
 env: 
 	$(PIP) install --upgrade 'openai>=1.0'
-	$(PIP) install gradio
+	$(PIP) install streamlit
 
 run:
-	$(PYTHON) $(ENTRY)
+	streamlit run $(ENTRY)

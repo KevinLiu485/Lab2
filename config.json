@@ -1,10 +1,12 @@
-[
-    {
-        "name": "kimi",
-        "key": "sk-ymP64ClSNmnEXbVHuUJGW2vy2BEUEjPArwa5T4QenoIVhJYF"
+{
+    "kimi": {
+        "baseurl": "https://api.moonshot.cn/v1",
+        "modelname": "moonshot-v1-8k-vision-preview",
+        "apikey": "sk-ymP64ClSNmnEXbVHuUJGW2vy2BEUEjPArwa5T4QenoIVhJYF"
     },
-    {
-        "name": "doubao",
-        "key": "b8bfb41c-5852-452c-91e1-0fddafcde9fd"
+    "doubao": {
+        "baseurl": "https://ark.cn-beijing.volces.com/api/v3",
+        "modelname": "doubao-1.5-vision-lite-250315",
+        "apikey": "b8bfb41c-5852-452c-91e1-0fddafcde9fd"
     }
-]
+}

@@ -1,19 +1,22 @@
 class GPT:
     def __init__(self):
-        # self.model_name = None
-        # self.api_key = None
-        # self.history = []
         pass
 
-    def multi_turn_chat(self, message: str) -> str:
+    def chat(self, message: str, file_content=None) -> str:
         """
-        与Kimi模型进行多轮对话
+        与模型进行多轮或单轮对话
         :param message: 用户输入的消息
-        :return: Kimi模型的回复
+        :return: 模型的回复
         """
 
-    def get_history(self) -> list:
+    def get_model_name(self) -> str:
         """
-        获取聊天历史
-        :return: 聊天历史列表
+        获取模型名称
+        :return: 模型名称
+        """
+
+    def get_display_name(self) -> str:
+        """
+        获取模型的显示名称
+        :return: 模型的显示名称
         """

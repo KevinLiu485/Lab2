@@ -1,18 +1,38 @@
-import os
 from openai import OpenAI
+from config import config
+from api.gpt import GPT
 
+MODEL = 'doubao'
 
-
-client = OpenAI(
-    # 从环境变量中读取您的方舟API Key
-    api_key=os.environ.get("ARK_API_KEY"), 
-    base_url="https://ark.cn-beijing.volces.com/api/v3",
-    )
-completion = client.chat.completions.create(
-    # 将推理接入点 <Model>替换为 Model ID
-    model="<Model>",
-    messages=[
-        {"role": "user", "content": "你好"}
-    ]
-)
-print(completion.choices[0].message)
+class Doubao(GPT):
+    def __init__(self):
+        self.client = OpenAI(
+            api_key=config.get(MODEL, 'apikey'),
+            base_url=config.get(MODEL, 'baseurl'),
+            )
+        
+    def chat(self, message: str, file_content=None) -> str:
+        """
+        与模型进行多轮或单轮对话
+        :param message: 用户输入的消息
+        :return: 模型的回复
+        """
+        completion = self.client.chat.completions.create(
+            model=config.get(MODEL, 'modelname'),
+            messages=[
+                {"role": "user", "content": message}
+            ]
+        )
+        return completion.choices[0].message.content
+    
+    def get_model_name(self) -> str:
+        return MODEL
+    
+    def get_display_name(self) -> str:
+        """
+        获取模型的显示名称
+        :return: 模型的显示名称
+        """
+        return "豆包"
+    
+doubao = Doubao()
