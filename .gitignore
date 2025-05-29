@@ -3,6 +3,5 @@ __pycache__/
 .idea
 .gradio
 test.py
-**.doc
-profile/chat_history.json
-profile/preferences.json
+docs
+profile
