@@ -2,3 +2,5 @@
 __pycache__/
 chat_history.json
 .idea
+test.py
+**.doc
