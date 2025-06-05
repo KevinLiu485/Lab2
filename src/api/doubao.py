@@ -53,8 +53,9 @@ class Doubao(GPT):
 
     def _append_message(self, message: str, file_content=None):
         if file_content:
-            base64_image = base64.b64encode(file_content).decode('utf-8')
-            image_url = f"data:image/jpeg;base64,{base64_image}"
+            file_ext = str(file_content.name).split(".")[-1]
+            b64img = base64.b64encode(file_content.getvalue()).decode("utf-8")
+            image_url = f"data:image/{file_ext};base64,{b64img}"
             self.message.append(
                 {
                     "role": "user",
