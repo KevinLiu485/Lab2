@@ -1,7 +1,6 @@
 .DS_store
 __pycache__/
+chat_history.json
 .idea
-.gradio
 test.py
-docs
-profile
+**.doc

@@ -64,7 +64,9 @@ class Kimi(GPT):
         :return: 新的消息列表
         """
         if file_content:
-            image_url = "data:image/.jpeg;base64," + base64.b64encode(file_content).decode("utf-8")
+            file_ext = str(file_content.name).split(".")[-1]
+            b64img = base64.b64encode(file_content.getvalue()).decode("utf-8")
+            image_url = f"data:image/.{file_ext};base64,{b64img}"
             self.messages.append(
                 {
                     "role": "user",

@@ -7,6 +7,7 @@ import concurrent.futures
 
 HISTORY_FILE = "profile/chat_history.json"  # 聊天历史文件名
 PREFERENCES_FILE = "profile/preferences.json"  # 偏好设置文件名
+ENCODINGS = "utf-8"
 
 state = st.session_state
 
@@ -22,7 +23,7 @@ def init_history_lists():
     读取 HISTORY_FILE 初始化 state.history_lists
     """
     if os.path.exists(HISTORY_FILE):
-        with open(HISTORY_FILE, "r") as f:
+        with open(HISTORY_FILE, "r", encoding=ENCODINGS) as f:
             try:
                 state.history_lists = json.load(f)
                 # 为每个模型添加一个时间戳
@@ -38,7 +39,7 @@ def init_model_list():
     根据 PREFERENCES_FILE 初始化侧栏列表顺序
     """
     if os.path.exists(PREFERENCES_FILE):
-        with open(PREFERENCES_FILE, "r") as f:
+        with open(PREFERENCES_FILE, "r", encoding=ENCODINGS) as f:
             try:
                 preferences = json.load(f)
                 # print(f"init_model_list() read preferences: {preferences}")
@@ -124,14 +125,14 @@ def save_preferences():
     """
     保存用户的偏好设置到json文件
     """
-    with open(PREFERENCES_FILE, "w") as f:
+    with open(PREFERENCES_FILE, "w", encoding=ENCODINGS) as f:
         json.dump(state.preferences, f, ensure_ascii=False, indent=4)
 
 def save_history():
     """
     保存聊天历史到json文件
     """
-    with open(HISTORY_FILE, "w") as f:
+    with open(HISTORY_FILE, "w", encoding=ENCODINGS) as f:
         json.dump(state.history_lists, f, ensure_ascii=False, indent=4)
 
 def render_chat_input():
@@ -156,7 +157,7 @@ def render_chat_input():
         # 定义一个函数来调用模型的 `chat` 方法
         def call_model_chat(model, prompt, uploaded_file):
             # print(f"{model.get_model_name()} called")
-            return model, model.chat(prompt, file_content=uploaded_file.getvalue() if uploaded_file else None)
+            return model, model.chat(prompt, file_content=uploaded_file if uploaded_file else None)
 
         # 使用多线程调用所有模型的 `chat` 方法
         with concurrent.futures.ThreadPoolExecutor() as executor:
