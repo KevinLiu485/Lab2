@@ -125,6 +125,8 @@ def save_preferences():
     """
     保存用户的偏好设置到json文件
     """
+    if not os.path.isfile(PREFERENCES_FILE):
+        os.makedirs(os.path.dirname(PREFERENCES_FILE), exist_ok=True)
     with open(PREFERENCES_FILE, "w", encoding=ENCODINGS) as f:
         json.dump(state.preferences, f, ensure_ascii=False, indent=4)
 
@@ -132,6 +134,8 @@ def save_history():
     """
     保存聊天历史到json文件
     """
+    if not os.path.isfile(PREFERENCES_FILE):
+        os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
     with open(HISTORY_FILE, "w", encoding=ENCODINGS) as f:
         json.dump(state.history_lists, f, ensure_ascii=False, indent=4)
 
