@@ -118,7 +118,7 @@ def record_preferences():
     """
     # 记录用户的偏好设置
     state.preferences[state.front_model.get_model_name()] += 1
-    # print(f"record_preferences() {state.preferences}")
+    print(f"record_preferences() {state.preferences}")
 
 def save_preferences():
     """

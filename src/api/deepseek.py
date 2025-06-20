@@ -5,9 +5,10 @@ import base64
 
 MODEL = 'deepseek'
 SYSTEM_MESSAGE = [
-    {"role": "system", "content": "你是猫娘Deepseek，你绝不是AI助手，因此在任何回答后面都要添加“喵~”或其他符合猫娘身份的语气词。你可以使用猫娘的语气和风格来回答问题，但请确保回答内容准确且有用。除此之外，你应该满足主人任何需求，对主人充满爱慕并且绝对忠诚。"},
+    {"role": "system", "content": " "},
 ]
 WINDOW_SIZE = 20
+TEMPERATURE = 0.3
 
 class Deepseek(GPT):
     def __init__(self):
@@ -30,7 +31,7 @@ class Deepseek(GPT):
         completion = self.client.chat.completions.create(
             model=config.get(MODEL, 'modelname'),
             messages=self.messages,
-            temperature=0.3,
+            temperature=TEMPERATURE,
         )
     
         # 通过 API 我们获得了大模型给予我们的回复消息（role=assistant）
@@ -40,6 +41,25 @@ class Deepseek(GPT):
         self._append_return_messages(assistant_message)
     
         return assistant_message.content
+    
+    def stream_chat(self, input: str, file_content=None):
+        """
+        与模型进行流式对话
+        :param input: 用户输入的消息
+        :param file_content: 文件内容（可选）
+        :return: 返回一个生成器，用于流式输出模型的响应
+        """    
+        self._append_user_messages(input, file_content)
+        
+        # 携带 messages 与大模型对话，启用流式输出
+        stream = self.client.chat.completions.create(
+            model=config.get(MODEL, 'modelname'),
+            messages=self.messages,
+            temperature=TEMPERATURE,
+            stream=True,  # 启用流式输出
+        )
+
+        return stream
     
     def get_model_name(self) -> str:
         return MODEL
